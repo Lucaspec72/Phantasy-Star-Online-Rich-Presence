@@ -39,45 +39,60 @@ supported_pso_versions = {
 
 location_dict = {
     #Episode 1 maps
-    "bossOld"   : "Under the Dome",
-    "boss02d"   : "Underground Channel",
-    "boss03d"   : "Electrical Tower",
-    "boss04d"   : "The Final Area",
-    "city00"    : "Pioneer 2 (Ep 1)",
-    "forest01s" : "Forest 1",
-    "forest02s" : "Forest 2",
-    "cave01"    : "Cave 1",
-    "cave02"    : "Cave 2",
-    "cave03"    : "Cave 3",
-    "machine01" : "Mine 1",
-    "machine02" : "Mine 2",
-    "ancient01" : "Ruins 1",
-    "ancient02" : "Ruins 2",
-    "ancient03" : "Ruins 3",
+    "bossOld"               : "Under the Dome",
+    "boss02d"               : "Underground Channel",
+    "boss03d"               : "Electrical Tower",
+    "boss04d"               : "The Final Area",
+    "city00"                : "Pioneer 2 (Ep 1)",
+    "forest01s"             : "Forest 1",
+    "forest02s"             : "Forest 2",
+    "cave01"                : "Cave 1",
+    "cave02"                : "Cave 2",
+    "cave03"                : "Cave 3",
+    "machine01"             : "Mine 1",
+    "machine02"             : "Mine 2",
+    "ancient01"             : "Ruins 1",
+    "ancient02"             : "Ruins 2",
+    "ancient03"             : "Ruins 3",
     #Lobby Maps
-    "Lobby_Old" : "Lobby Menu",
-    "lobby_01e" : "Lobby 1",
-    "lobby_02e" : "Lobby 2",
+    "Lobby_Old"             : "Lobby Menu",
+    "lobby_01e"             : "Lobby 1",
+    "lobby_02e"             : "Lobby 2",
+    "lobby_03e"             : "Lobby 3",
+    "lobby_04e"             : "Lobby 4",
+    "lobby_05e"             : "Lobby 5",
+    "lobby_06e"             : "Lobby 6",
+    "lobby_07e"             : "Lobby 7",
+    "lobby_08e"             : "Lobby 8",
+    "lobby_09e"             : "Lobby 9",
+    "lobby_10e"             : "Lobby 10",
+    "lobby_red_be00e"       : "Lobby 11",
+    "lobby_yellow_be00e"    : "Lobby 12",
+    "lobby_green_be00e"     : "Lobby 13",
+    "lobby_soccer01e"       : "Lobby 14",
+    "lobby_soccer02e"       : "Lobby 15",
     #Episode 2 maps
-    "labo00"    : "Pioneer 2",
-    "ruins01"   : "VR Temple Alpha",
-    "ruins02"   : "VR Temple Beta",
-    "boss07s"   : "Barba Ray's Lair",
-    "space01"   : "VR Space Ship Alpha",
-    "space02"   : "VR Space Ship Beta",
-    "boss08d"   : "Gol Dragon's Lair",
-    "jungle01"  : "Central Control Area",
-    "jungle02"  : "Jungle Area North",
-    "jungle03"  : "Jungle Area East",
-    "jungle04"  : "Mountain Area",
-    "jungle05"  : "Seaside Area",
-    "boss05i"   : "Gal Gryphon's Lair",
-    "seabed01"  : "SeaBed Upper Levels",
-    "seabed02"  : "SeaBed Lower Levels",
-    "boss06d"   : "Olga Flow's Lair"
-}
+    "labo00"                : "Pioneer 2",
+    "ruins01"               : "VR Temple Alpha",
+    "ruins02"               : "VR Temple Beta",
+    "boss07s"               : "Barba Ray's Lair",
+    "space01"               : "VR Space Ship Alpha",
+    "space02"               : "VR Space Ship Beta",
+    "boss08d"               : "Gol Dragon's Lair",
+    "jungle01"              : "Central Control Area",
+    "jungle02"              : "Jungle Area North",
+    "jungle03"              : "Jungle Area East",
+    "jungle04"              : "Mountain Area",
+    "jungle05"              : "Seaside Area",
+    "boss05i"               : "Gal Gryphon's Lair",
+    "seabed01"              : "SeaBed Upper Levels",
+    "seabed02"              : "SeaBed Lower Levels",
+    "boss06d"               : "Olga Flow's Lair"
+}   
 assets_dict = {
     "Lobby 1": "lobby_1",
+    "Pioneer 2 (Ep 1)" : "city",
+    "Forest 1" : "forest_1",
 }
 
 #parse argument
@@ -129,7 +144,7 @@ if dme.is_hooked():
             return
         
     def get_location(): #DEBUG one of the values is incorrect, find non-persistant data
-        temp1 = dme.read_bytes(memory_dict.get("location"), 14) #EUR code
+        temp1 = dme.read_bytes(memory_dict.get("location"), 22) #EUR code
         #temp1 = dme.read_bytes(2153026918, 14) #USA code
         # Decode the bytes into a string
         temp1 = temp1.decode('utf-8', errors='ignore').strip('\x00')  # or 'ascii', depending on your data
@@ -185,7 +200,20 @@ if dme.is_hooked():
             username, isOnline = get_username()
             location = get_location()
             team = get_team(isOnline, location)
-            
+            #Debug value print
+            #print("=============")
+            #print("Player count : ")
+            #print([player_count])
+            #print("Username : ")
+            #print([username])
+            #print("isOnline : ")
+            #print([isOnline])
+            #print("location : ")
+            #print([location])
+            #print("team : ")
+            #print([team])
+
+
             #Define Payload
             drp_payload = {
 
@@ -203,7 +231,8 @@ if dme.is_hooked():
                 "large_text": location,
                 #"small_image": "small_image",  # If possible replace with server logo
                 #"small_text": "small text hover",
-                }
+            }
+
             
             #Location display
             if player_count == 0:
