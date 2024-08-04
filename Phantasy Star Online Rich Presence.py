@@ -8,9 +8,9 @@ import dolphin_memory_engine as dme
 from discordrp import Presence
 import time
 import argparse
+
 client_id = "1269030453172637801"
 start_time = int(time.time())
-
 
 
 memory_eur_rev0_dict = {
@@ -43,7 +43,7 @@ location_dict = {
     "boss02d"               : "Underground Channel",
     "boss03d"               : "Electrical Tower",
     "boss04d"               : "The Final Area",
-    "city00"                : "Pioneer 2 (Ep 1)",
+    "city00"                : "Pioneer 2 City",
     "forest01s"             : "Forest 1",
     "forest02s"             : "Forest 2",
     "cave01"                : "Cave 1",
@@ -72,7 +72,7 @@ location_dict = {
     "lobby_soccer01e"       : "Lobby 14",
     "lobby_soccer02e"       : "Lobby 15",
     #Episode 2 maps
-    "labo00"                : "Pioneer 2",
+    "labo00"                : "Pioneer 2 Labo",
     "ruins01"               : "VR Temple Alpha",
     "ruins02"               : "VR Temple Beta",
     "boss07s"               : "Barba Ray's Lair",
@@ -91,8 +91,11 @@ location_dict = {
 }   
 assets_dict = {
     "Lobby 1": "lobby_1",
-    "Pioneer 2 (Ep 1)" : "city",
+    "Pioneer 2 City" : "city",
+    "Pioneer 2 Labo" : "labo",
     "Forest 1" : "forest_1",
+    "VR Temple Alpha" : "ruins_1",
+    "VR Temple Beta" : "ruins_2"
 }
 
 #parse argument
