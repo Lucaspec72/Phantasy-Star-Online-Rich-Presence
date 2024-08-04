@@ -148,10 +148,6 @@ if dme.is_hooked():
         temp1 = dme.read_bytes(memory_dict.get("teamName"), 14)
         # Decode the bytes into a string
         temp1 = temp1.decode('utf-8', errors='ignore').strip('\x00')
-        print("isonline")
-        print(isOnline)
-        print("teamname")
-        print(temp1)
         if isOnline and location.split(' ')[0] != "lobby" and temp1 and playerCount > 0:
             return temp1
         else:
@@ -165,8 +161,8 @@ if dme.is_hooked():
         temp1 = temp1.split('.')[0]
         if temp1.split('_')[0] != "lobby":
             temp1 = temp1.split('_')[0]
-        #print("location (directValue) : ")
-        #print([temp1])
+        print("location (Memory Value) : ")
+        print([temp1])
         return location_dict.get(temp1, "Unknown Location")
 
 
@@ -226,8 +222,8 @@ if dme.is_hooked():
             #print([isOnline])
             #print("team : ")
             #print([team])
-            #print("location (inloop) : ")
-            #print([location])
+            print("location (human readable) : ")
+            print([location])
 
 
             #Define Payload
