@@ -40,6 +40,7 @@ supported_pso_versions = {
 location_dict = {
     #Episode 1 maps
     "bossOld"               : "Under the Dome",
+    "boss01d"               : "Under the Dome",
     "boss02d"               : "Underground Channel",
     "boss03d"               : "Electrical Tower",
     "boss04d"               : "The Final Area",
@@ -94,8 +95,14 @@ assets_dict = {
     "Pioneer 2 City" : "city",
     "Pioneer 2 Labo" : "labo",
     "Forest 1" : "forest_1",
+    "Forest 2" : "forest_2",
     "VR Temple Alpha" : "ruins_1",
-    "VR Temple Beta" : "ruins_2"
+    "VR Temple Beta" : "ruins_2",
+    "Under the Dome" : "boss_1",
+    "Underground Channel" : "boss_2",
+    "Electrical Tower" : "boss_3",
+    "The Final Area" : 'boss_4',
+    "Cave 1" : 'cave_1',
 }
 
 #parse argument
@@ -136,12 +143,16 @@ if dme.is_hooked():
             # If an error occurs, Dolphin is probably not running
             return False
 
-    def get_team(isOnline,location):
+    def get_team(isOnline,location,playerCount):
         #Current team value (remains assigned even after leaving, need to check for room and online status to prove we're actually online)
         temp1 = dme.read_bytes(memory_dict.get("teamName"), 14)
         # Decode the bytes into a string
         temp1 = temp1.decode('utf-8', errors='ignore').strip('\x00')
-        if isOnline and location.split(' ')[0] != "lobby" and temp1:
+        print("isonline")
+        print(isOnline)
+        print("teamname")
+        print(temp1)
+        if isOnline and location.split(' ')[0] != "lobby" and temp1 and playerCount > 0:
             return temp1
         else:
             return
@@ -154,6 +165,8 @@ if dme.is_hooked():
         temp1 = temp1.split('.')[0]
         if temp1.split('_')[0] != "lobby":
             temp1 = temp1.split('_')[0]
+        #print("location (directValue) : ")
+        #print([temp1])
         return location_dict.get(temp1, "Unknown Location")
 
 
@@ -198,23 +211,23 @@ if dme.is_hooked():
         
         while is_dolphin_running() :
             #Update Values from Dolphin
-            player_count = dme.read_word(memory_dict.get("playerCount"))
+            playerCount = dme.read_word(memory_dict.get("playerCount"))
             #player_ConnectionState = getPlayerState()
             username, isOnline = get_username()
             location = get_location()
-            team = get_team(isOnline, location)
+            team = get_team(isOnline, location,playerCount)
             #Debug value print
             #print("=============")
             #print("Player count : ")
-            #print([player_count])
+            #print([playerCount])
             #print("Username : ")
             #print([username])
             #print("isOnline : ")
             #print([isOnline])
-            #print("location : ")
-            #print([location])
             #print("team : ")
             #print([team])
+            #print("location (inloop) : ")
+            #print([location])
 
 
             #Define Payload
@@ -225,7 +238,7 @@ if dme.is_hooked():
             }
 
             #handles the image displayed
-            if player_count > 0:
+            if playerCount > 0:
                 assetimage = assets_dict.get(location, "missing_asset")
             else:
                 assetimage = "main_menu"
@@ -238,34 +251,34 @@ if dme.is_hooked():
 
             
             #Location display
-            if player_count == 0:
+            if playerCount == 0:
                 drp_payload["state"] = "in Menu"
             else:
                 drp_payload["state"] = "in " + location
 
             #State Conditions.
-            if player_count == 1 and not isOnline:
+            if playerCount == 1 and not isOnline:
                 drp_payload["details"] = username + " is in Singleplayer"
                 drp_payload["party"] = {
-                    "size": [player_count,1], #make playercount take from value with logic
+                    "size": [playerCount,1], #make playercount take from value with logic
                 }
-            if player_count > 1 and not isOnline:
+            if playerCount > 1 and not isOnline:
                 drp_payload["details"] = username + " is in Local Multiplayer"
                 drp_payload["party"] = {
-                    "size": [player_count,4], #make playercount take from value with logic
-                }
-            if location.split(' ')[0] == "Lobby" and player_count > 0:
-                drp_payload["details"] = username + " is in Lobby"
-                drp_payload["party"] = {
-                    "size": [player_count,30], #make playercount take from value with logic
+                    "size": [playerCount,4], #make playercount take from value with logic
                 }
             if team:
                 drp_payload["details"] = username + " is in Team " + team
                 drp_payload["party"] = {
-                    "size": [player_count,4], #make playercount take from value with logic
+                    "size": [playerCount,4], #make playercount take from value with logic
+                }
+            if location.split(' ')[0] == "Lobby" and playerCount > 0:
+                drp_payload["details"] = username + " is in Lobby"
+                drp_payload["party"] = {
+                    "size": [playerCount,30], #make playercount take from value with logic
                 }
             
-            if player_count == 0:
+            if playerCount == 0:
                 drp_payload["party"] = {}
 
 
