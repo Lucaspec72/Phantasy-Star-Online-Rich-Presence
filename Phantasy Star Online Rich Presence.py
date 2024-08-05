@@ -161,8 +161,9 @@ if dme.is_hooked():
         temp1 = temp1.split('.')[0]
         if temp1.split('_')[0] != "lobby":
             temp1 = temp1.split('_')[0]
-        print("location (Memory Value) : ")
+        print("--location (Memory Value) : ")
         print([temp1])
+        print("")
         return location_dict.get(temp1, "Unknown Location")
 
 
@@ -200,6 +201,7 @@ if dme.is_hooked():
             }
         )
         print("Presence Set Up") 
+        print("===================================")
 
 
 
@@ -213,17 +215,22 @@ if dme.is_hooked():
             location = get_location()
             team = get_team(isOnline, location,playerCount)
             #Debug value print
-            #print("=============")
-            #print("Player count : ")
-            #print([playerCount])
-            #print("Username : ")
-            #print([username])
-            #print("isOnline : ")
-            #print([isOnline])
-            #print("team : ")
-            #print([team])
-            print("location (human readable) : ")
+            print("--location (human readable) : ")
             print([location])
+            print("")
+            print("--Player count : ")
+            print([playerCount])
+            print("")
+            print("--Username : ")
+            print([username])
+            print("")
+            print("--isOnline : ")
+            print([isOnline])
+            print("")
+            print("--team : ")
+            print([team])
+            print("")
+            print("===================================")
 
 
             #Define Payload
