@@ -121,7 +121,7 @@ def parseArguments():
 memory_dict = supported_pso_versions.get(parseArguments().version, memory_usa_rev2_dict)
 
 print("=============================================================")
-print("Phantasy Star Online Rich Presence v0.5.1-prototype")
+print("Phantasy Star Online Rich Presence v0.5.2-prototype")
 print("by Lucaspec72")
 print("")
 print("=============================================================")
@@ -288,6 +288,6 @@ if dme.is_hooked():
 
             presence.set(drp_payload)
             time.sleep(7)
-        print("Dolphin Closed")
+        print("Dolphin Closed, terminating program")
 else:
-    print("Failed to hook into Dolphin")
+    print("Failed to hook into Dolphin, terminating program")
