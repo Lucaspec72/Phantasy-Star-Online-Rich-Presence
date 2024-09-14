@@ -103,6 +103,8 @@ assets_dict = {
     "Electrical Tower" : "boss_3",
     "The Final Area" : 'boss_4',
     "Cave 1" : 'cave_1',
+    "Cave 2" : 'cave_2',
+    "Cave 3" : 'cave_3',
 }
 
 #parse argument
