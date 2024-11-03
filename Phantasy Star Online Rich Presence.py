@@ -91,20 +91,36 @@ location_dict = {
     "boss06d"               : "Olga Flow's Lair"
 }   
 assets_dict = {
+    #General
+    #Lobbies
     "Lobby 1": "lobby_1",
+    #Pioneer 2 Maps
     "Pioneer 2 City" : "city",
     "Pioneer 2 Labo" : "labo",
+    #EPISODE 1
+    #Forest
     "Forest 1" : "forest_1",
     "Forest 2" : "forest_2",
-    "VR Temple Alpha" : "ruins_1",
-    "VR Temple Beta" : "ruins_2",
+    #Caves
+    "Cave 1" : 'cave_1',
+    "Cave 2" : 'cave_2',
+    "Cave 3" : 'cave_3',
+    #Mines
+    "Mine 1" : "mine_1",
+    "Mine 2" : "mine_2",
+    #Ruins
+    "Ruins 1" : "ew_1",
+    "Ruins 2" : "ew_2",
+    "Ruins 3" : "ew_3",
+    #Bosses
     "Under the Dome" : "boss_1",
     "Underground Channel" : "boss_2",
     "Electrical Tower" : "boss_3",
     "The Final Area" : 'boss_4',
-    "Cave 1" : 'cave_1',
-    "Cave 2" : 'cave_2',
-    "Cave 3" : 'cave_3',
+    #EPISODE 2
+    #VR Temple
+    "VR Temple Alpha" : "ruins_1",
+    "VR Temple Beta" : "ruins_2",
 }
 
 #parse argument
