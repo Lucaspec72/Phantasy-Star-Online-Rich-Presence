@@ -94,6 +94,20 @@ assets_dict = {
     #General
     #Lobbies
     "Lobby 1": "lobby_1",
+    "Lobby 2": "lobby_2",
+    "Lobby 3": "lobby_3",
+    "Lobby 4": "lobby_4",
+    "Lobby 5": "lobby_5",
+    "Lobby 6": "lobby_6",
+    "Lobby 7": "lobby_7",
+    "Lobby 8": "lobby_8",
+    "Lobby 9": "lobby_9",
+    "Lobby 10": "lobby_10",
+    "Lobby 11": "lobby_11",
+    "Lobby 12": "lobby_12",
+    "Lobby 13": "lobby_13",
+    "Lobby 14": "lobby_14",
+    "Lobby 15": "lobby_15",
     #Pioneer 2 Maps
     "Pioneer 2 City" : "city",
     "Pioneer 2 Labo" : "labo",
